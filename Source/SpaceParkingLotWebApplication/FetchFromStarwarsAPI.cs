@@ -10,17 +10,39 @@ namespace SpaceParkingLotWebApplication
     {
         public FetchFromStarwarsAPI()
         {
+            FetchAvatarFromStarwarsAPI();
+        }
+        public void FetchAvatarFromStarwarsAPI()
+        {
+            var result = FetchAsyncFromAPI();
+            result.Start();
+            result.Wait();
+            foreach(var el in result.Result.Data.name)
+            {
+                Console.WriteLine(el.ToString());
+            }            
+        }
+
+        // Gick efter youtubevideo https://www.youtube.com/watch?v=usyI0fstrsw
+        async Task<IRestResponse<StarwarsAvatar>> FetchAsyncFromAPI()
+        {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("people/", DataFormat.Json);
-            // NOTE: The Swreponse is a custom class which represents the data returned by the API, RestClient have buildin ORM which maps the data from the reponse into a given type of object
-            var peopleResponse = await client.GetAsync<StarwarsAvatar>(request);
 
-            Console.WriteLine(peopleResponse.Data.Count);
-            foreach (var p in peopleResponse.Data.Results)
+            var taskCompletionSource = new TaskCompletionSource<IRestResponse<StarwarsAvatar>>();
+
+            client.ExecuteAsync<StarwarsAvatar>(request, restResponse =>
             {
-                Console.WriteLine(p.Name);
-            }
-        }       
+                if (restResponse.ErrorException != null)
+                {
+                    const string message = "Error retrieving response";
+                    throw new ApplicationException(message, restResponse.ErrorException);
+                }
+                taskCompletionSource.SetResult(restResponse);
+            });
+
+            return await taskCompletionSource.Task;
+        }
     }
 }
 
