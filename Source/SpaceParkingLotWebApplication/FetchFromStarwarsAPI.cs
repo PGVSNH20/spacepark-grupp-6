@@ -14,10 +14,10 @@ namespace SpaceParkingLotWebApplication
         }
         public void FetchAvatarFromStarwarsAPI()
         {
-            var result = FetchAsyncFromAPI();
-            result.Start();
-            result.Wait();
-            foreach(var el in result.Result.Data.name)
+            var AvatarList = FetchAsyncFromAPI();
+            AvatarList.Start();
+            AvatarList.Wait();
+            foreach(var el in AvatarList.Result.Data.name)
             {
                 Console.WriteLine(el.ToString());
             }            
