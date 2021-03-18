@@ -1,5 +1,5 @@
 # Documentation
-
+ 2021-03-18
 Första intrycket
 
 [Spaceport]
@@ -13,4 +13,11 @@ visa namn och rymdskepp därifrån men anropa det egna APIet för
 lediga platser.
 
 Return bör ge en biljett med ett pris och betalningsinformation.
+
+Installera Entitity Framework - Done
+Installera RestSharp - Done
+
+
+ 2021-03-19
+
 
