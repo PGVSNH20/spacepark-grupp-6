@@ -23,7 +23,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 return Page();
             }
 
-            return RedirectToPage("./index");
+            return RedirectToPage("/index");
 
         }
     }
