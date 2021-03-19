@@ -17,7 +17,6 @@ namespace SpaceParkingLotWebApplication
         public string eye_color { get; set; }
         public string birth_year { get; set; }
         public string gender { get; set; }
-        public Uri homeworld { get;set;}
         public Uri[] films { get; set; }
         public Uri[] species { get; set; }
         public Uri[] vehicles { get; set; }
