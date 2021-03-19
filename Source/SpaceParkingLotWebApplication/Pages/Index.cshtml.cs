@@ -18,7 +18,8 @@ namespace SpaceParkingLotWebApplication.Pages
         {
             _logger = logger;
         }
-
+        [BindProperty(SupportsGet = true)]
+        public string NameOFParker { get; set; }
 
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
 
@@ -42,6 +43,7 @@ namespace SpaceParkingLotWebApplication.Pages
         public string Message { get; set; }
         public void OnGet()
         {
+            if (string.IsNullOrWhiteSpace(NameOFParker)) { NameOFParker = "Galactic Explorer"; }
             Message = "Get used";
         }
         public void OnPost()
