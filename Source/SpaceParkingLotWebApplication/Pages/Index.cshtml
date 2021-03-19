@@ -15,31 +15,16 @@
     <p><a href="/" class="btn btn-default">Click to Get</a></p>
 </div>
 
-
-
-
 @{
-    @foreach (var record in Model.randomList)
+    @foreach (var record in Model.starWarsUniverseAvatars)
     {
+
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => record)
+                @Html.DisplayFor(modelItem3 => record)
                 <br />
             </td>
         </tr>
-    }
-}
-
-@{
-    @foreach (var record in Model.randomList2)
-    {
-        foreach (var item in record)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem2 => item)
-                </td>
-            </tr>
-        }
+       
     }
 }

@@ -7,8 +7,6 @@ namespace SpaceParkingLotWebApplication.Models
 {
     public class StarShips
     {
-        public List<StarShips> Data { get; set; }
-
 		public string name { get; set; }
 		public string model { get; set; }
 		public string manufacturer { get; set; }
@@ -23,9 +21,9 @@ namespace SpaceParkingLotWebApplication.Models
 		public int MGLT { get; set; }
 		public string starship_class { get; set; }
 		public List<string> pilots { get; set; }
-		public Uri[] films { get; set; }
+		public List<string> films { get; set; }
 		public DateTime created { get; set; }
 		public DateTime edited { get; set; }
-		public Uri url { get; set; }
+		public List<string> url { get; set; }
     }
 }

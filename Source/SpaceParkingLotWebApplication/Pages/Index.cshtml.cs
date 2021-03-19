@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SpaceParkingLotWebApplication.Models;
+using RestSharp;
 
 namespace SpaceParkingLotWebApplication.Pages
 {
@@ -18,25 +19,36 @@ namespace SpaceParkingLotWebApplication.Pages
             _logger = logger;
         }
 
+
+        public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+
+        static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
+        {
+            List<StarwarsAvatar> avatars = new List<StarwarsAvatar>();
+
+            var client = new RestClient("https://swapi.dev/api/");
+            var request = new RestRequest("people/", DataFormat.Json);
+            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+
+            foreach (var p in peopleResponse.results)
+            {
+                avatars.Add(p);
+            }
+
+            return avatars;
+        }
+
+        // OnClick()
         public string Message { get; set; }
-
-
-        public List<string> randomList = new List<string>() { "Hund", "Katt", "Yoda", "Luke Skywalker", "Arsenal" };
-        public string[] randomList2 = { "Hund", "Katt", "Yoda", "Luke Skywalker", "Arsenal" };
-
-
-
-        public StarwarsAvatar avatar { get; set; }
-
-        //avatar = FetchAsyncFromAPI();
-
         public void OnGet()
         {
             Message = "Get used";
         }
         public void OnPost()
         {
+            // Tanken är att den ska hämta data till alla Star Wars-karaktärer och skriva ut till en lista på Index.html
             Message = "Post used";
+
         }
     }
 }
