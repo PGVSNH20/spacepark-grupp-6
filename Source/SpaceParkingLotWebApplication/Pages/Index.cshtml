@@ -8,3 +8,29 @@
     <h1 class="display-4">Welcome</h1>
     <p>group 6</p>
 </div>
+
+@{
+    @foreach (var record in Model.randomList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => record)
+                <br />
+            </td>
+        </tr>
+    }
+}
+
+@{
+    @foreach (var record in Model.randomList2)
+    {
+        foreach (var item in record)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem2 => item)
+                </td>
+            </tr>
+        }
+    }
+}

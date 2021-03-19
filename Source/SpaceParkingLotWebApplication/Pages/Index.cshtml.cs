@@ -17,6 +17,9 @@ namespace SpaceParkingLotWebApplication.Pages
             _logger = logger;
         }
 
+        public List<string> randomList = new List<string>() { "Hund", "Katt", "Yoda", "Luke Skywalker", "Arsenal" };
+        public string[] randomList2 = { "Hund", "Katt", "Yoda", "Luke Skywalker", "Arsenal" };
+
         public void OnGet()
         {
 
