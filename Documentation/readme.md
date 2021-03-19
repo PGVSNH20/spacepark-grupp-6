@@ -20,4 +20,5 @@ Installera RestSharp - Done
 
  2021-03-19
 
+Eftersom SpacePark endast är öppen för alla som vart med i Star Wars filmerna, så behöver vi ett sätt att ta in random people för att kunna se lite variation. 
 
