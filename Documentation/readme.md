@@ -33,3 +33,8 @@ så vi behöver ett sätt att titta igenom alla Star Wars-avatarer för att gör
 15:30
 Vi har nu skapat klasser till en function som tar in personer på första sidan: https://swapi.dev/people,
 även lyckats få ut informationen på webapplikationen.
+
+
+16:24
+Jag lyckades fixa validering emot Swapi med Emils StarWarsUniverse model.
+Om jag får tid över ska jag försöka skicka ut informationen på sidan också, (för tilllfället skickas man bara tilll Error eller Index beroende på om man har korrekt input)
