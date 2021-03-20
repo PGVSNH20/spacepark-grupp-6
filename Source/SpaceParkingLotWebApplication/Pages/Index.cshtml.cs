@@ -43,7 +43,7 @@ namespace SpaceParkingLotWebApplication.Pages
         public string Message { get; set; }
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(NameOFParker)) { NameOFParker = "Galactic Explorer"; }
+            if (string.IsNullOrWhiteSpace(NameOFParker)) { NameOFParker = "Welcome Galactic Explorer!"; }
             Message = "Get used";
         }
         public void OnPost()

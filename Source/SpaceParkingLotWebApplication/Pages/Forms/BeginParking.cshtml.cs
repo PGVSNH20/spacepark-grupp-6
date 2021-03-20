@@ -43,7 +43,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             }
             if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
             {
-                return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name} you are parked!") });
+                return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
                }
             return RedirectToPage("/error");
 
