@@ -1,0 +1,17 @@
+﻿@page
+@model SpaceParkingLotWebApplication.Pages.Forms.BeginParking
+@{
+}
+@{
+    ViewData["Title"] = "Begin Parking";
+}
+
+<h1> Begin Parking </h1>
+
+<form method="post">
+    <input type="text" asp-for="Parking.Name" placeholder="Name of driver" />
+    <input type="text" asp-for="Parking.VehicleID" placeholder="Vehicle ID" />
+    <input type="time" asp-for="Parking.StartTime" placeholder="Start parking" />
+    <input type="time" asp-for="Parking.Endtime" placeholder="Stop parking" />
+    <button type="submit">Begin parking!</button>
+</form>
