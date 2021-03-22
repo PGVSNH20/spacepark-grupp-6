@@ -10,6 +10,8 @@ namespace SpaceParkingLotWebApplication.Models
         public int count { get; set; }
         public string next { get; set; }
         public string previous { get; set; }
-        public List<StarwarsAvatar> results { get; set; }        
+        public List<StarwarsAvatar> results { get; set; }
+
+        public List<StarShips> resultsForShips { get; set; }
     }
 }

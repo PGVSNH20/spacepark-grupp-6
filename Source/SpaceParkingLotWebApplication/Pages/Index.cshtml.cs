@@ -46,7 +46,7 @@ namespace SpaceParkingLotWebApplication.Pages
 
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("starships/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarShips>(request);
+            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
 
             foreach (var p in peopleResponse.resultsForShips)
             {
