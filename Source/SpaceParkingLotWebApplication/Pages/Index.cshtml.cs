@@ -22,6 +22,7 @@ namespace SpaceParkingLotWebApplication.Pages
         public string NameOFParker { get; set; }
 
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+        public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
 
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
@@ -37,6 +38,23 @@ namespace SpaceParkingLotWebApplication.Pages
             }
 
             return avatars;
+        }
+
+        static async Task<List<StarShips>> FetchStarWarsShipsAsync()
+        {
+            List<StarShips> ships = new List<StarShips>();
+
+            var client = new RestClient("https://swapi.dev/api/");
+            var request = new RestRequest("starships/", DataFormat.Json);
+            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+
+            foreach (var p in peopleResponse.results)
+            {
+                
+                ships.Add(p);
+            }
+
+            return ships;
         }
 
         // OnClick()
