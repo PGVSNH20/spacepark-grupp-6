@@ -37,7 +37,27 @@
             </div>
     </form>
     
+    @if(true)
+            {
+                <form>
+                    <div class="text-center">
+                        <label>
+                            Choose starship
+                        </label>
+                        <br />
+                        <select id="shipSelect">
+                            <option value="">Select a ship</option>
 
+                            @foreach (var record in Model.starWarsUniverseAvatars)
+                            {
+                                <option value="@Html.DisplayFor(modelItem3 => record.starships)">
+                                    @Html.DisplayFor(modelItem3 => record.starships)
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            }
 
     @foreach (var record in Model.starWarsUniverseAvatars)
     {
