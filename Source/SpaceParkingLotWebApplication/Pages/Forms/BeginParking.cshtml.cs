@@ -11,19 +11,36 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 {
     public class BeginParking : PageModel
     {
-        public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
 
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
             List<StarwarsAvatar> avatars = new List<StarwarsAvatar>();
 
-            var client = new RestClient("https://swapi.dev/api/");
-            var request = new RestRequest("people/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+            int currentPage = 1;
+            bool isThereAnotherPage = true;
 
-            foreach (var p in peopleResponse.results)
+            var client = new RestClient("https://swapi.dev/api/people/");
+            var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
+
+            while (isThereAnotherPage)
             {
-                avatars.Add(p);
+                var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+
+                foreach (var p in peopleResponse.results)
+                {
+                    avatars.Add(p);
+                    Console.WriteLine("Added: " + p.name);
+                }
+
+                if (peopleResponse.next != null)
+                {
+                    currentPage++;
+                }
+
+                else
+                {
+                    isThereAnotherPage = false;
+                }
             }
 
             return avatars;
@@ -37,20 +54,21 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         public IActionResult OnPost()
         {
-            if(ModelState.IsValid == false)
+            List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+
+            if (ModelState.IsValid == false)
             {
                 return Page();
             }
             if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
             {
                 return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
-               }
+            }
             return RedirectToPage("/error");
 
             //Save Model to DataBase
 
             //return RedirectToPage("/index");
-
         }
     }
 }
