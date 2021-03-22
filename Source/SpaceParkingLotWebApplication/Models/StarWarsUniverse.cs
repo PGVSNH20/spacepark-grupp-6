@@ -11,5 +11,6 @@ namespace SpaceParkingLotWebApplication.Models
         public string next { get; set; }
         public string previous { get; set; }
         public List<StarwarsAvatar> results { get; set; }
+        public List<StarShips> resultsForShips { get; set; }
     }
 }

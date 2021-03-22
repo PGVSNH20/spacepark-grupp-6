@@ -48,7 +48,7 @@ namespace SpaceParkingLotWebApplication.Pages
             var request = new RestRequest("starships/", DataFormat.Json);
             var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
 
-            foreach (var p in peopleResponse.results)
+            foreach (var p in peopleResponse.resultsForShips)
             {
                 
                 ships.Add(p);
