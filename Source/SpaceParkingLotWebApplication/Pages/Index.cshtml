@@ -11,23 +11,33 @@
 
 <div>
     <h3>@Model.Message</h3>
-    <form method="post"><button class="btn btn-default">Click to post</button></form>
-    <p><a href="/" class="btn btn-default">Click to Get</a></p>
+    <form method="post"><button class="btn btn-primary">Click to post</button></form>
+    <p><a href="/" class="btn btn-primary">Click to Get</a></p>
 </div>
 
 @{
-    <select id="name">
-        <option value="">Select a name</option>
+    <form method="post">
+        <div class="text-center">
+            <label>Hello sir! What is your name may I ask ?</label>
+            <br />
+            <select id="name">
 
-            @foreach (var record in Model.starWarsUniverseAvatars)
-            {
-            <option value="@Html.DisplayFor(modelItem3 => record.name)">
-                @Html.DisplayFor(modelItem3 => record.name)
-            </option>
-            }
-    </select>
-    <br />
+                <option value="">Select a name</option>
+
+                @foreach (var record in Model.starWarsUniverseAvatars)
+                {
+                    <option value="@Html.DisplayFor(modelItem3 => record.name)">
+                        @Html.DisplayFor(modelItem3 => record.name)
+                    </option>
+                }
+            </select>
+            <input type="text" placeholder="Enter your name" />
+            <br />
+            <button type="submit" class="btn btn-primary">Choose spaceship to park</button>
+            </div>
+    </form>
     
+
 
     @foreach (var record in Model.starWarsUniverseAvatars)
     {
