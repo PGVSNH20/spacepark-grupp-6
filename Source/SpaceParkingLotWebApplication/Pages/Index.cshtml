@@ -16,6 +16,19 @@
 </div>
 
 @{
+    <select id="name">
+        <option value="">Select a name</option>
+
+            @foreach (var record in Model.starWarsUniverseAvatars)
+            {
+            <option value="@Html.DisplayFor(modelItem3 => record.name)">
+                @Html.DisplayFor(modelItem3 => record.name)
+            </option>
+            }
+    </select>
+    <br />
+    
+
     @foreach (var record in Model.starWarsUniverseAvatars)
     {
 
@@ -25,6 +38,6 @@
                 <br />
             </td>
         </tr>
-       
+
     }
 }
