@@ -1,10 +1,10 @@
 # Documentation
 To-Do Lista:
-1. Skapa input på applikationen, Man ska kunna skriva in namn i input
-2. Skapa knapp på applikationen, När man klickar så ska den ta in resultatet från input med namn.
-3. Skapa en funktion som körs när man klickat på knappen. Funktionen ska jämföra namnet i input med namnen i listan från https://swapi.dev/people (i dagsläget page/1/)
-4. Vidareutveckla funktionen som tar in personer från https://swapi.dev/people. Den ska nu kunna gå igenom alla sidor och ta ut alla karaktärer.
-5. (Ska Yoda kunna köra Gokart?)
+1. Vidareutveckla metoden som tar in personer från https://swapi.dev/people. Den ska nu kunna gå igenom alla sidor och ta ut alla karaktärer.
+2. Skapa en metod som går igenom <inputs> skepp, de ska sedan kan välja sina fordon (i en lista?) för att kunna parkera.
+3. Skapa en metod som räknar ut hur stor yta av parkeringshuset som är upptagen.
+4. 
+5. (Extra punkt. Om någon har lust så är det bara börja på att utveckla gränssnittet lite) 
 
 2021-03-18
 Första intrycket
@@ -38,3 +38,8 @@ Vi har nu skapat klasser till en function som tar in personer på första sidan:
 16:24
 Jag lyckades fixa validering emot Swapi med Emils StarWarsUniverse model.
 Om jag får tid över ska jag försöka skicka ut informationen på sidan också, (för tilllfället skickas man bara tilll Error eller Index beroende på om man har korrekt input)
+
+2021-03-22
+
+10:30
+Updaterade ToDo-listan
