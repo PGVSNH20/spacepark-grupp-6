@@ -25,5 +25,7 @@ namespace SpaceParkingLotWebApplication.Models
 		public DateTime created { get; set; }
 		public DateTime edited { get; set; }
 		public List<string> url { get; set; }
-    }
+
+		public List<StarShips> resultsForShips { get; set; }
+	}
 }

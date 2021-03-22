@@ -18,7 +18,7 @@ namespace SpaceParkingLotWebApplication.Pages
         {
             _logger = logger;
         }
-        [BindProperty(SupportsGet = true)]
+        [BindProperty(SupportsGet = true)] 
         public string NameOFParker { get; set; }
 
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
@@ -46,7 +46,7 @@ namespace SpaceParkingLotWebApplication.Pages
 
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("starships/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+            var peopleResponse = await client.GetAsync<StarShips>(request);
 
             foreach (var p in peopleResponse.resultsForShips)
             {
