@@ -91,15 +91,17 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public IActionResult OnPost()
         {
             List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
-            chooseShip = true;
+            
             if (ModelState.IsValid == false)
             {
+                if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
+                {
+                    chooseShip = true;
+                    //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
+                }
                 return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats...
             }
-            if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
-            {
-                //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
-            }
+            
             return RedirectToPage("/error");
 
             //Save Model to DataBase
