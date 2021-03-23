@@ -9,7 +9,7 @@ namespace SpaceParkingLotWebApplication.Models
     {
         public string Name { get; set; }
 
-        public int VehicleID { get; set; }
+        public string VehicleID { get; set; }
 
         public DateTime StartTime { get; set; }
 
