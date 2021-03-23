@@ -22,7 +22,7 @@
             Choose starship
         </label>
         <br />
-        <select id="shipSelect">
+        <select name="shipSelect">
             <option value="">Select a ship</option>
             @{
                 @if (Model.chooseShip)
@@ -36,6 +36,6 @@
                 }
             }
         </select>
-        <button type="submit" class="btn btn-primary">Choose spaceship to park</button>
+        <button type="submit" class="btn btn-primary">Park spaceship !</button>
     </div>
 </form>

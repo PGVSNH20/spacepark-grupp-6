@@ -94,12 +94,11 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             chooseShip = true;
             if (ModelState.IsValid == false)
             {
-                return Page();
+                return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats...
             }
             if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
             {
-                //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
-                
+                //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
             }
             return RedirectToPage("/error");
 
