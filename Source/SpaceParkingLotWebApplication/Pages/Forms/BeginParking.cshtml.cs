@@ -88,9 +88,10 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public bool chooseShip { get; set; } = false;
 
         public List<StarShips> starWarsUniverseShips { get; set; }
+        public List<StarwarsAvatar> starWarsUniverseAvatars { get; set; }
         public IActionResult OnPost()
         {
-            List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+            starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
             
             if (ModelState.IsValid == false)
             {
