@@ -46,15 +46,50 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             return avatars;
         }
 
+        static async Task<List<StarShips>> FetchStarWarsShipsAsync()
+        {
+            List<StarShips> ships = new List<StarShips>();
+
+            int currentPage = 1;
+            bool isThereAnotherPage = true;
+
+            var client = new RestClient("https://swapi.dev/api/starships/");
+
+            while (isThereAnotherPage)
+            {
+                var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
+                var peopleResponse = await client.GetAsync<StarWarsUniverseStarShip>(request);
+
+                foreach (var p in peopleResponse.results)
+                {
+                    ships.Add(p);
+                    Console.WriteLine("Added: " + p.name);
+                }
+
+                if (peopleResponse.next != null)
+                {
+                    currentPage++;
+                }
+
+                else
+                {
+                    isThereAnotherPage = false;
+                }
+            }
+            return ships;
+        }
+
         [BindProperty]
         public BeginParkingModel Parking { get; set; }
         public void OnGet()
         {
         }
 
+        public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
         public IActionResult OnPost()
         {
             List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+            
 
             if (ModelState.IsValid == false)
             {
@@ -62,7 +97,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             }
             if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
             {
-                return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
+                //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
             }
             return RedirectToPage("/error");
 
