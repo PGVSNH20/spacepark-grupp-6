@@ -8,8 +8,8 @@ namespace SpaceParkingLotWebApplication
     public class StarwarsAvatar
     {
         public string name { get; set; }
-        public int height { get; set; }
-        public decimal mass { get; set; }
+        public string height { get; set; }
+        public string mass { get; set; }
         public string hair_color { get; set; }
         public string skin_color { get; set; }
         public string eye_color { get; set; }

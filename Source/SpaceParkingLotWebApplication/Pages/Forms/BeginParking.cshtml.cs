@@ -20,11 +20,11 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             bool isThereAnotherPage = true;
 
             var client = new RestClient("https://swapi.dev/api/people/");
-            var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
 
             while (isThereAnotherPage)
             {
-                var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+                var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
+                var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
 
                 foreach (var p in peopleResponse.results)
                 {

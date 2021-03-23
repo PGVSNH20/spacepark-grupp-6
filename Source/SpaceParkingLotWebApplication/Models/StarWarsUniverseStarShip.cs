@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SpaceParkingLotWebApplication.Models
 {
-    public class StarWarsUniverse2
+    public class StarWarsUniverseStarShip
     {
         public int count { get; set; }
         public string next { get; set; }

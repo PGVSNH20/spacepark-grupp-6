@@ -27,7 +27,7 @@ namespace SpaceParkTestUnit
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("people/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+            var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
             Console.WriteLine(peopleResponse.results.Count);
 
             Assert.IsTrue(peopleResponse.results.Count > 0);
@@ -38,7 +38,7 @@ namespace SpaceParkTestUnit
         {
             var client = new RestClient("https://swapi.dev/api/");
             var request = new RestRequest("people/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverse>(request);
+            var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
 
             Assert.AreEqual("Luke Skywalker", peopleResponse.results[0].name);
         }
