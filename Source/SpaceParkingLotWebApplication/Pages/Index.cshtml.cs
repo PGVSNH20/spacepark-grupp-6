@@ -28,13 +28,31 @@ namespace SpaceParkingLotWebApplication.Pages
         {
             List<StarwarsAvatar> avatars = new List<StarwarsAvatar>();
 
-            var client = new RestClient("https://swapi.dev/api/");
-            var request = new RestRequest("people/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
+            int currentPage = 1;
+            bool isThereAnotherPage = true;
 
-            foreach (var p in peopleResponse.results)
+            var client = new RestClient("https://swapi.dev/api/people/");
+
+            while (isThereAnotherPage)
             {
-                avatars.Add(p);
+                var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
+                var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
+
+                foreach (var p in peopleResponse.results)
+                {
+                    avatars.Add(p);
+                    Console.WriteLine("Added: " + p.name);
+                }
+
+                if (peopleResponse.next != null)
+                {
+                    currentPage++;
+                }
+
+                else
+                {
+                    isThereAnotherPage = false;
+                }
             }
 
             return avatars;
@@ -44,16 +62,32 @@ namespace SpaceParkingLotWebApplication.Pages
         {
             List<StarShips> ships = new List<StarShips>();
 
-            var client = new RestClient("https://swapi.dev/api/");
-            var request = new RestRequest("starships/", DataFormat.Json);
-            var peopleResponse = await client.GetAsync<StarWarsUniverseStarShip>(request);
+            int currentPage = 1;
+            bool isThereAnotherPage = true;
 
-            foreach (var p in peopleResponse.results)
+            var client = new RestClient("https://swapi.dev/api/starships/");
+
+            while (isThereAnotherPage)
             {
-                
-                ships.Add(p);
-            }
+                var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
+                var peopleResponse = await client.GetAsync<StarWarsUniverseStarShip>(request);
 
+                foreach (var p in peopleResponse.results)
+                {
+                    ships.Add(p);
+                    Console.WriteLine("Added: " + p.name);
+                }
+
+                if (peopleResponse.next != null)
+                {
+                    currentPage++;
+                }
+
+                else
+                {
+                    isThereAnotherPage = false;
+                }
+            }
             return ships;
         }
 
