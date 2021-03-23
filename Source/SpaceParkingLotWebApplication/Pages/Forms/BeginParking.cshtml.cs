@@ -84,13 +84,14 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public void OnGet()
         {
         }
+        
+        public bool chooseShip { get; set; } = false;
 
         public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
         public IActionResult OnPost()
         {
             List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
-            
-
+            chooseShip = true;
             if (ModelState.IsValid == false)
             {
                 return Page();
@@ -98,6 +99,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
             {
                 //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });
+                
             }
             return RedirectToPage("/error");
 
