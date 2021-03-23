@@ -11,7 +11,6 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 {
     public class BeginParking : PageModel
     {
-
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
             List<StarwarsAvatar> avatars = new List<StarwarsAvatar>();
@@ -81,6 +80,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         [BindProperty]
         public BeginParkingModel Parking { get; set; }
+
         public void OnGet()
         {
         }
@@ -94,15 +94,17 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             
             if (ModelState.IsValid == false)
             {
-                if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
+                if (Parking.Name != null)
                 {
-                    starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
-                    chooseShip = true;
-                    //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
-                }
+                    if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
+                    {
+                        starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
+                        chooseShip = true;
+                        //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
+                    }
+                }               
                 return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats...
-            }
-            
+            }           
             return RedirectToPage("/error");
 
             //Save Model to DataBase
