@@ -76,7 +76,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             return ships;
         }
 
-
+        
 
         public void OnGet()
         {
@@ -87,6 +87,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         public IActionResult OnPost()
         {
+
             // Laddar ned alla karaktärer
             starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
 
