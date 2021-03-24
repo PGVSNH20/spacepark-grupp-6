@@ -18,11 +18,9 @@ namespace SpaceParkingLotWebApplication.Pages
         {
             _logger = logger;
         }
-        [BindProperty(SupportsGet = true)] 
-        public string NameOFParker { get; set; }
 
+        // Laddar ned en fusk-lista med karaktärer
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
-        public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
 
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
@@ -41,7 +39,6 @@ namespace SpaceParkingLotWebApplication.Pages
                 foreach (var p in peopleResponse.results)
                 {
                     avatars.Add(p);
-                    Console.WriteLine("Added: " + p.name);
                 }
 
                 if (peopleResponse.next != null)
@@ -58,51 +55,30 @@ namespace SpaceParkingLotWebApplication.Pages
             return avatars;
         }
 
-        static async Task<List<StarShips>> FetchStarWarsShipsAsync()
-        {
-            List<StarShips> ships = new List<StarShips>();
-
-            int currentPage = 1;
-            bool isThereAnotherPage = true;
-
-            var client = new RestClient("https://swapi.dev/api/starships/");
-
-            while (isThereAnotherPage)
-            {
-                var request = new RestRequest($"?page={currentPage}", DataFormat.Json);
-                var peopleResponse = await client.GetAsync<StarWarsUniverseStarShip>(request);
-
-                foreach (var p in peopleResponse.results)
-                {
-                    ships.Add(p);
-                    Console.WriteLine("Added: " + p.name);
-                }
-
-                if (peopleResponse.next != null)
-                {
-                    currentPage++;
-                }
-
-                else
-                {
-                    isThereAnotherPage = false;
-                }
-            }
-            return ships;
-        }
+        [BindProperty]
+        public string NameOFParker { get; set; }
 
         // OnClick()
-        public string Message { get; set; }
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(NameOFParker)) { NameOFParker = "Welcome Galactic Explorer!"; }
-            Message = "Get used";
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            // Tanken är att den ska hämta data till alla Star Wars-karaktärer och skriva ut till en lista på Index.html
-            Message = "Post used";
+            // Laddar ned alla karaktärer
+            starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
 
+            // Kollar att Namnet från input är OK
+            // Sedan skickar den namnet till BeginParking.cshtml
+            foreach (var avatar in starWarsUniverseAvatars)
+            {
+                if (avatar.name == NameOFParker)
+                {
+                    return RedirectToPage("/forms/BeginParking", new { NameOFParker = NameOFParker });
+                }
+            }
+
+            // Om namnet inte finns med i listan så går den tillbaka till index.cshtml
+            return RedirectToPage("/index");
         }
     }
 }

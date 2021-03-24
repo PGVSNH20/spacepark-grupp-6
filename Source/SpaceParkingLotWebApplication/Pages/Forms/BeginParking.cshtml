@@ -6,36 +6,23 @@
     ViewData["Title"] = "Begin Parking";
 }
 
-<h1> Begin Parking </h1>
+<h1> Hello Friend. What's your vehicle how long are you staying?</h1>
 
 <form method="post">
-    <input type="text" asp-for="Parking.Name" placeholder="Name of driver" />
-    <input type="text" asp-for="Parking.VehicleID" placeholder="Vehicle Name" />
-    <input type="time" asp-for="StartTime"  asp-format="{0:HH:mm}" placeholder="Star parking" />
-    <input type="time" asp-for="EndTime"  asp-format="{0:HH:mm}" placeholder="Stop parking" />
+    <select name="shipSelect">
+        <option value="">List of Star Ships</option>
+        @foreach (var record in Model.starWarsUniverseShips)
+        {
+            <option value="@Html.DisplayFor(modelItem3 => record.name)">
+                @Html.DisplayFor(modelItem3 => record.name)
+            </option>
+        }
+    </select>
+</form>
+
+<form method="post">
+    <input type="text" asp-for="Vehicle" placeholder="Vehicle Name" />
+    <input type="time" asp-for="EndTime" placeholder="Stop parking" />
     <button type="submit" class="btn btn-primary">Begin parking!</button>
 </form>
 
-<form method="post">
-    <div>
-        <label>
-            Choose starship
-        </label>
-        <br />
-        <select name="shipSelect">
-            <option value="">Select a ship</option>
-            @{
-                @if (Model.chooseShip)
-                {
-                    @foreach (var record in Model.starWarsUniverseShips)
-                    {
-                        <option value="@Html.DisplayFor(modelItem3 => record.model)">
-                            @Html.DisplayFor(modelItem3 => record.model)
-                        </option>
-                    }
-                }
-            }
-        </select>
-        <button type="submit" class="btn btn-primary">Park spaceship !</button>
-    </div>
-</form>

@@ -5,70 +5,36 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">@Model.NameOFParker</h1>
+    <h1 class="display-4">Welcome Galactic Explorer</h1>
     <p>group 6</p>
 </div>
 
-<div>
-    <h3>@Model.Message</h3>
-    <form method="post"><button class="btn btn-primary">Click to post</button></form>
-    <p><a href="/" class="btn btn-primary">Click to Get</a></p>
-</div>
+
+@{
+    <form>
+        <select id="name">
+
+            <option value="">List of names</option>
+
+            @foreach (var record in Model.starWarsUniverseAvatars)
+            {
+                <option value="@Html.DisplayFor(modelItem3 => record.name)">
+                    @Html.DisplayFor(modelItem3 => record.name)
+                </option>
+            }
+        </select>
+    </form>
+}
 
 @{
     <form method="post">
         <div class="text-center">
             <label>Hello sir! What is your name may I ask ?</label>
             <br />
-            <select id="name">
 
-                <option value="">Select a name</option>
-
-                @foreach (var record in Model.starWarsUniverseAvatars)
-                {
-                    <option value="@Html.DisplayFor(modelItem3 => record.name)">
-                        @Html.DisplayFor(modelItem3 => record.name)
-                    </option>
-                }
-            </select>
-            <input type="text" placeholder="Enter your name" />
+            <input type="text" asp-for="NameOFParker" placeholder="Enter Your Name" />
             <br />
-            <button type="submit" class="btn btn-primary">Check if your name is allowed</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Verify Name</button>
+        </div>
     </form>
-    
-    @if(true)
-      {
-        <form method="post">
-            <div class="text-center">
-                <label>
-                    Choose starship
-                </label>
-                <br />
-                <select id="shipSelect">
-                    <option value="">Select a ship</option>
-
-                    @foreach (var record in Model.starWarsUniverseShips)
-                    {
-                        <option value="@Html.DisplayFor(modelItem3 => record.model)">
-                            @Html.DisplayFor(modelItem3 => record.model)
-                        </option>
-                    }
-                </select>
-                <button type="submit" class="btn btn-primary">Choose spaceship to park</button>
-            </div>
-        </form>     
-      }
-
-    @foreach (var record in Model.starWarsUniverseAvatars)
-    {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem3 => record.name)
-                <br />
-            </td>
-        </tr>
-
-    }
 }
