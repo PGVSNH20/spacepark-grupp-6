@@ -83,7 +83,8 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public BeginParkingModel Parking { get; set; }
 
         [BindProperty]
-        public DateTime Time { get; set; } = DateTime.Now;
+        public DateTime StartTime { get; set; } = DateTime.Now;
+        public DateTime EndTime { get; set; }
 
         public void OnGet()
         {
@@ -103,11 +104,12 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 {
                     if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
                     {
-                        Parking.StartTime = Time; // Kanske sätta den här i slutet av ledet om man faktiskt köper biljetten.
+                        Parking.StartTime = StartTime; // Kanske sätta den här i slutet av ledet om man faktiskt köper biljetten.
+                        Parking.Endtime = EndTime;
                         starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
                         chooseShip = true;
 
-                        return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!") });
+                        return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked {Parking.StartTime} and expires: {Parking.Endtime}!") });
                     }
                 }
                 return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats.../DR/-_ just nu returnerar den sidan man är på om inget namn är ifyllt
