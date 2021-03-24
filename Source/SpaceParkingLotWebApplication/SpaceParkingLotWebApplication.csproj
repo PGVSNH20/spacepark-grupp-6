@@ -6,12 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFDataAccessLibrary\EFDataAccessLibrary.csproj" />
   </ItemGroup>
 
 </Project>
