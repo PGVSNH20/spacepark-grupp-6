@@ -11,7 +11,7 @@
 <form method="post">
     <input type="text" asp-for="Parking.Name" placeholder="Name of driver" />
     <input type="text" asp-for="Parking.VehicleID" placeholder="Vehicle Name" />
-    <input type="time" asp-for="Parking.StartTime" placeholder="Star parking" />
+    <input type="time" asp-for="Time"  asp-format="{0:HH:mm}" placeholder="Star parking" />
     <input type="time" asp-for="Parking.Endtime" placeholder="Stop parking" />
     <button type="submit" class="btn btn-primary">Begin parking!</button>
 </form>

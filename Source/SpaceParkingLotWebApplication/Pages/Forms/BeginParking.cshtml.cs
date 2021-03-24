@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -81,6 +82,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         [BindProperty]
         public BeginParkingModel Parking { get; set; }
 
+        [BindProperty]
+        public DateTime Time { get; set; } = DateTime.Now;
+
         public void OnGet()
         {
         }
@@ -99,6 +103,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 {
                     if (starWarsUniverseAvatars.Any(x => x.name.ToLower() == Parking.Name.ToLower()))
                     {
+                        Parking.StartTime = Time; // Kanske sätta den här i slutet av ledet om man faktiskt köper biljetten.
                         starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
                         chooseShip = true;
                         //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
