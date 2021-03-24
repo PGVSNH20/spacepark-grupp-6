@@ -84,6 +84,8 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         // Laddar ned en fusk-lista med skepp
         public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
+        public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
+        public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
 
         public IActionResult OnPost()
         {
@@ -97,7 +99,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             {
                 if (ship.name.Equals(Parking.VehicleID))
                 {
-                    return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!") });
+                    double occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
+                    double TicketCost = GetTicketCost(occupationTime,5);
+                    return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}! Total cost: {TicketCost}") });
                 }
             }
 
