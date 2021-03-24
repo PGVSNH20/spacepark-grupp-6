@@ -106,14 +106,15 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                         Parking.StartTime = Time; // Kanske sätta den här i slutet av ledet om man faktiskt köper biljetten.
                         starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
                         chooseShip = true;
-                        //return RedirectToPage("/index", new { NameOfParker = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
+                       // return RedirectToPage("/index", new { ParkingTicket = ($"{Parking.Name}, your parking expires: {Parking.Endtime}!") });                
                     }
-                }               
-                return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats...
-            }           
-            return RedirectToPage("/error");
+                }
+                return Page(); // Vad gör den här ? Den här körs nu istället för nästa if sats.../DR/-_ just nu returnerar den sidan man är på om inget namn är ifyllt
+            }
+            return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!") });
 
             //Save Model to DataBase
+            //"Parking"-objectet lär väll vara det som ska in i databasen? -DR
 
             //return RedirectToPage("/index");
         }
