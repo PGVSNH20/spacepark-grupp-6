@@ -101,7 +101,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 {
                     double occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
                     double TicketCost = GetTicketCost(occupationTime,5);
-                    return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}! Total cost: {TicketCost}") });
+                    return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {occupationTime}\nTotal cost: {TicketCost} SEK") });
                 }
             }
 
