@@ -27,7 +27,7 @@ namespace SpaceParkingLotWebApplication
         {
             services.AddDbContext<TicketContext>(options =>
             {
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion ("5.0.12"));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new System.Version(5, 0, 12)));
             });
             services.AddRazorPages();
         }
