@@ -14,6 +14,8 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
     {
 
         // Lade till lite props som vi sätter i inputs / hämtar in från Index.cshtml
+        [BindProperty(SupportsGet = true)]
+        public string UserGreeting { get; set; }
 
         private BeginParkingModel _parking;
 
@@ -80,6 +82,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         public void OnGet()
         {
+            UserGreeting = NameOFParker;
         }
 
         // Laddar ned en fusk-lista med skepp
