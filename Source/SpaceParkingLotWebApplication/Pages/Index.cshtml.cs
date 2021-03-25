@@ -54,7 +54,7 @@ namespace SpaceParkingLotWebApplication.Pages
 
             return avatars;
         }
-
+        
         [BindProperty]
         public string NameOFParker { get; set; }
 
