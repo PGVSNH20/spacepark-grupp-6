@@ -1,8 +1,8 @@
 # Documentation
 To-Do Lista:
-1. Vidareutveckla metoden som tar in personer från https://swapi.dev/people. Den ska nu kunna gå igenom alla sidor och ta ut alla karaktärer.
-2. Skapa en metod som går igenom <inputs> skepp, de ska sedan kan välja sina fordon (i en lista?) för att kunna parkera.
-3. Skapa en metod som räknar ut hur stor yta av parkeringshuset som är upptagen.
+1. Göra en sida där man kan "identifiera" sig och få ut en lista med alla köpta biljetter för denna personen.
+2. När denne person identifierat sig ska en kunna välja sin "Aktiva" biljett och kunna betala nuvarande summa för att åka därifrån (vilket gör att endtime slutar .now)?
+3. Göra så att databasen tar emot ett X antal aktiva platser. (Skapa en metod som räknar ut hur många aktiva platser som finns att hyra.)
 4. 
 5. (Extra punkt. Om någon har lust så är det bara börja på att utveckla gränssnittet lite) 
 
@@ -43,3 +43,12 @@ Om jag får tid över ska jag försöka skicka ut informationen på sidan också
 
 10:30
 Updaterade ToDo-listan
+
+2021-03-22
+
+12:30
+Nu har vi skapat en databas genom Add Migration
+Databasen sparar:id, namn, fordon, start/sluttid på parkering, antal minuter, kostnad och parkeringsplats
+
+13:44
+Updaterade ToDo-Listan med lite nya uppgifter man kan göra om man känner att man har tid.
