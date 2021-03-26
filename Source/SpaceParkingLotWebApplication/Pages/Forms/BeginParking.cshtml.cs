@@ -128,7 +128,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             {
                 var list = context.Tickets.ToList();
 
-                var orderDetails = context.OrderDetails.Include(o => o.Order).ToList();
+                //var orderDetails = context.OrderDetails.Include(o => o.Order).ToList();
 
                 var order1 = new TicketRecord()
                 {
@@ -141,15 +141,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                     ParkingSpot = new Random().Next(1 - 30),
                 };
 
-                var order2 = new Order()
-                {
-                    CustomerID = 10,
-                    EmployeeID = 1,
-                    OrderDate = new DateTime(2017, 12, 20)
-                };
-
-                context.Orders.Add(order1);
-                context.Orders.Add(order2);
+                context.Tickets.Add(order1);
                 context.SaveChanges();
             }
         }
