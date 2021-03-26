@@ -15,6 +15,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
     public class BeginParking : PageModel
     {
 
+
         // Lade till lite props som vi sätter i inputs / hämtar in från Index.cshtml
         [BindProperty(SupportsGet = true)]
         public string UserGreeting { get; set; }
@@ -80,7 +81,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             return ships;
         }
 
-        
+
 
         public void OnGet()
         {
@@ -106,8 +107,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             {
                 if (ship.name.Equals(Parking.VehicleID))
                 {
-                    occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
-                    TicketCost = GetTicketCost(occupationTime,5);
+                    occupationTime = GetMinutes(Parking.StartTime, Parking.Endtime);
+                    TicketCost = GetTicketCost(occupationTime, 5);
+                    CreateOrder();
                     return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {occupationTime}\nTotal cost: {TicketCost} SEK") });
                 }
             }
@@ -122,15 +124,14 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             //"Parking"-objectet lär väll vara det som ska in i databasen? -DR
         }
 
+
         public void CreateOrder()
         {
-            using (var context = new TicketContext())
+            var optionsBuilder = new DbContextOptionsBuilder<TicketContext>();
+
+            using (TicketContext context = new TicketContext(optionsBuilder.Options))
             {
-                var list = context.Tickets.ToList();
-
-                var orderDetails = context.OrderDetails.Include(o => o.Order).ToList();
-
-                var order1 = new TicketRecord()
+                var order = new TicketRecord()
                 {
                     Name = Parking.Name,
                     VehicleID = Parking.VehicleID,
@@ -138,21 +139,12 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                     EndTime = Parking.Endtime,
                     OccupationTimeInMinutes = occupationTime,
                     AmountToPay = TicketCost,
-                    ParkingSpot = new Random().Next(1 - 30),
+                    ParkingSpot = new Random().Next(1,30),
                 };
 
-                var order2 = new Order()
-                {
-                    CustomerID = 10,
-                    EmployeeID = 1,
-                    OrderDate = new DateTime(2017, 12, 20)
-                };
-
-                context.Orders.Add(order1);
-                context.Orders.Add(order2);
+                context.Add(order);
                 context.SaveChanges();
             }
         }
-
     }
 }

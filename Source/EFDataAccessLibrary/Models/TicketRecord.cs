@@ -13,6 +13,6 @@ namespace EFDataAccessLibrary.Models
         public DateTime EndTime { get; set; }
         public double OccupationTimeInMinutes { get; set; }
         public double AmountToPay { get; set; }
-        public int ParkingSpot { get; set; } = 1;
+        public int ParkingSpot { get; set; }
     }
 }
