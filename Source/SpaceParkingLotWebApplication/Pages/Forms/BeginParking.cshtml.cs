@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RestSharp;
 using SpaceParkingLotWebApplication.Models;
 
@@ -104,6 +104,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 {
                     double occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
                     double TicketCost = GetTicketCost(occupationTime,5);
+
+
+
                     return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {occupationTime}\nTotal cost: {TicketCost} SEK") });
                 }
             }
@@ -117,5 +120,33 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             //Save Model to DataBase
             //"Parking"-objectet lär väll vara det som ska in i databasen? -DR
         }
+
+        public void CreateOrder()
+        {
+            using (var context = new MyContext())
+            {
+                var list = context.Orders.ToList();
+
+                var orderDetails = context.OrderDetails.Include(o => o.Order).ToList();
+
+                var order1 = new Order()
+                {
+                    CustomerID = 6,
+                    EmployeeID = 8
+                };
+
+                var order2 = new Order()
+                {
+                    CustomerID = 10,
+                    EmployeeID = 1,
+                    OrderDate = new DateTime(2017, 12, 20)
+                };
+
+                context.Orders.Add(order1);
+                context.Orders.Add(order2);
+                context.SaveChanges();
+            }
+        }
+
     }
 }
