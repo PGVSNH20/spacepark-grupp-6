@@ -139,18 +139,10 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                     EndTime = Parking.Endtime,
                     OccupationTimeInMinutes = occupationTime,
                     AmountToPay = TicketCost,
-                    ParkingSpot = new Random().Next(1,30),
+                    ParkingSpot = new Random().Next(1, 30),
                 };
 
                 context.Add(order);
-                {
-                    CustomerID = 10,
-                    EmployeeID = 1,
-                    OrderDate = new DateTime(2017, 12, 20)
-                };
-
-                context.Orders.Add(order1);
-                context.Orders.Add(order2);
                 context.SaveChanges();
             }
         }
