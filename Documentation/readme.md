@@ -42,7 +42,7 @@ Om jag får tid över ska jag försöka skicka ut informationen på sidan också
 2021-03-22
 
 10:30
-Updaterade ToDo-listan
+Uppdaterade ToDo-listan
 
 2021-03-22
 
@@ -51,4 +51,4 @@ Nu har vi skapat en databas genom Add Migration
 Databasen sparar:id, namn, fordon, start/sluttid på parkering, antal minuter, kostnad och parkeringsplats
 
 13:44
-Updaterade ToDo-Listan med lite nya uppgifter man kan göra om man känner att man har tid.
+Uppdaterade ToDo-Listan med lite nya uppgifter man kan göra om man känner att man har tid.
