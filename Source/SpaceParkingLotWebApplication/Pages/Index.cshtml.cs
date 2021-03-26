@@ -20,7 +20,7 @@ namespace SpaceParkingLotWebApplication.Pages
         }
 
         // Laddar ned en fusk-lista med karaktärer
-        public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+        public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().GetAwaiter().GetResult();
 
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
