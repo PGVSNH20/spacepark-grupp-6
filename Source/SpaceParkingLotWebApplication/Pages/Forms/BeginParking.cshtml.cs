@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFDataAccessLibrary.DataAccess;
+using EFDataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -89,6 +91,8 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
         public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
         public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
+        public double TicketCost { get; set; }
+        public double occupationTime { get; set; }
 
         public IActionResult OnPost()
         {
@@ -102,11 +106,8 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             {
                 if (ship.name.Equals(Parking.VehicleID))
                 {
-                    double occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
-                    double TicketCost = GetTicketCost(occupationTime,5);
-
-
-
+                    occupationTime = GetMinutes(Parking.StartTime,Parking.Endtime);
+                    TicketCost = GetTicketCost(occupationTime,5);
                     return RedirectToPage("/forms/ListStarwarsAvatars", new { ParkingTicket = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {occupationTime}\nTotal cost: {TicketCost} SEK") });
                 }
             }
@@ -123,16 +124,21 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
         public void CreateOrder()
         {
-            using (var context = new MyContext())
+            using (var context = new TicketContext())
             {
-                var list = context.Orders.ToList();
+                var list = context.Tickets.ToList();
 
                 var orderDetails = context.OrderDetails.Include(o => o.Order).ToList();
 
-                var order1 = new Order()
+                var order1 = new TicketRecord()
                 {
-                    CustomerID = 6,
-                    EmployeeID = 8
+                    Name = Parking.Name,
+                    VehicleID = Parking.VehicleID,
+                    StartTime = Parking.StartTime,
+                    EndTime = Parking.Endtime,
+                    OccupationTimeInMinutes = occupationTime,
+                    AmountToPay = TicketCost,
+                    ParkingSpot = new Random().Next(1 - 30),
                 };
 
                 var order2 = new Order()
