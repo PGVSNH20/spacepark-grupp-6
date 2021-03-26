@@ -65,7 +65,8 @@ namespace SpaceParkingLotWebApplication.Pages
         public IActionResult OnPost()
         {
             // Laddar ned alla karaktärer
-            starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().Result;
+            starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().GetAwaiter().GetResult(); 
+            // https://youtu.be/J0mcYVxJEl0?t=2475 Exceptions bakas in med .Result därför ska man använda detta istället.
 
             // Kollar att Namnet från input är OK
             // Sedan skickar den namnet till BeginParking.cshtml

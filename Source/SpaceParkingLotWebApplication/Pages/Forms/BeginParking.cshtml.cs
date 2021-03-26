@@ -89,7 +89,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         }
 
         // Laddar ned en fusk-lista med skepp
-        public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
+        public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().GetAwaiter().GetResult();
         public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
         public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
         public double TicketCost { get; set; }
@@ -99,7 +99,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         {
 
             // Laddar ned alla karaktärer
-            starWarsUniverseShips = FetchStarWarsShipsAsync().Result;
+            starWarsUniverseShips = FetchStarWarsShipsAsync().GetAwaiter().GetResult();
 
             // Kollar att Namnet från input är OK
             // Sedan skickar den namnet till BeginParking.cshtml
