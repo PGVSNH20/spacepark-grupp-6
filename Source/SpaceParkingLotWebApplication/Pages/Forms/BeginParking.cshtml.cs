@@ -143,6 +143,14 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 };
 
                 context.Add(order);
+                {
+                    CustomerID = 10,
+                    EmployeeID = 1,
+                    OrderDate = new DateTime(2017, 12, 20)
+                };
+
+                context.Orders.Add(order1);
+                context.Orders.Add(order2);
                 context.SaveChanges();
             }
         }
