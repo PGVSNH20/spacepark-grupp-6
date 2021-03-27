@@ -10,11 +10,11 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
     public class ListStarwarsAvatarsModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public string ParkingTicket { get; set; }
+        public string UserManual { get; set; }
         public StarwarsAvatar Avatars { get; set; }
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(ParkingTicket)) { ParkingTicket = "Please navigate to :Want to Park!"; }
+            if (string.IsNullOrWhiteSpace(UserManual)) { UserManual = "Please navigate to to the front of this application validate your name!"; }
         }
     }
 }
