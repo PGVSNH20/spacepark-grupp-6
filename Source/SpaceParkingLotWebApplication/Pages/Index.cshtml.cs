@@ -7,18 +7,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using SpaceParkingLotWebApplication.Models;
 using RestSharp;
+using EFDataAccessLibrary.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpaceParkingLotWebApplication.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly TicketContext _db;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, TicketContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
+        public void LoadStoredTickets()
+        {
+            if (_db.Tickets.Count() == 0)
+            {
+                Console.WriteLine("theres nothing in this table");
+            }
+        }
         // Laddar ned en fusk-lista med karaktärer
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().GetAwaiter().GetResult();
 
@@ -54,14 +65,32 @@ namespace SpaceParkingLotWebApplication.Pages
 
             return avatars;
         }
-        
+        [BindProperty]
+        public string ActiveTickets { get; set; }
         [BindProperty]
         public string NameOFParker { get; set; }
 
         // OnClick()
         public void OnGet()
         {
+           var tickets = _db.Tickets
+                
+               // .Include(b => b.Name)
+               //  .Include(c => c.VehicleID)
+               // .Include(d => d.ParkingSpot)
+               // .Include(e => e.EndTime)
+                             .ToList();
+            foreach(var ticket in tickets)
+            {
+                Console.WriteLine(@"ID{ ticket.Id} Name:
+                { ticket.Name} Parkingspot:
+                { ticket.ParkingSpot} Vehicle:
+                { ticket.VehicleID} Endtime:
+                { ticket.EndTime}");
+            }
         }
+
+
         public IActionResult OnPost()
         {
             // Laddar ned alla karaktärer
@@ -81,5 +110,6 @@ namespace SpaceParkingLotWebApplication.Pages
             // Om namnet inte finns med i listan så går den tillbaka till index.cshtml
             return RedirectToPage("/index");
         }
+        
     }
 }
