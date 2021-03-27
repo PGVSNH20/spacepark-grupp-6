@@ -11,22 +11,6 @@
 
 @{
     <form>
-        <select id="tickets">
-
-            <option value="">List of active tickets</option>
-
-            @foreach (var record in Model.activeTicketsInDb)
-            {
-                <option value="@Html.DisplayFor(modelItem3 => record.Id)">
-                    @Html.DisplayFor(modelItem3 => record.Name)
-                </option>
-            }
-        </select>
-    </form>
-}
-
-@{
-    <form>
         <select id="name">
 
             <option value="">List of names</option>
@@ -51,5 +35,28 @@
             <br />
             <button type="submit" class="btn btn-primary">Verify Name</button>
         </div>
+    </form>
+}
+
+@{
+    <form>
+        <select id="tickets">
+
+            <option value="">List of active tickets</option>
+
+            @foreach (var record in Model.activeTicketsInDb)
+            {
+                <option value="@Html.DisplayFor(modelItem3 => record.Name)">
+                    <p>Id:</p>
+                    @Html.DisplayFor(modelItem3 => record.Id)
+                    @Html.DisplayFor(modelItem3 => record.Name)
+                    @Html.DisplayFor(modelItem3 => record.VehicleID)
+                    <p>Spot:</p>
+                    @Html.DisplayFor(modelItem3 => record.ParkingSpot)
+                    <p>Ends:</p>
+                    @Html.DisplayFor(modelItem3 => record.EndTime)
+                </option>
+            }
+        </select>
     </form>
 }

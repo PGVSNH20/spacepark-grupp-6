@@ -76,14 +76,9 @@ namespace SpaceParkingLotWebApplication.Pages
         public void OnGet()
         {
            var tickets = _db.Tickets
-                
-               // .Include(b => b.Name)
-               //  .Include(c => c.VehicleID)
-               // .Include(d => d.ParkingSpot)
-               // .Include(e => e.EndTime)
-                             .ToList();
-
-            foreach(var ticket in tickets)
+                            .ToList();
+            activeTicketsInDb = tickets;
+            /*foreach(var ticket in tickets)
             {
                 Console.WriteLine(@"ID{ ticket.Id} Name:
                 { ticket.Name} Parkingspot:
@@ -91,7 +86,7 @@ namespace SpaceParkingLotWebApplication.Pages
                 { ticket.VehicleID} Endtime:
                 { ticket.EndTime}");
                 activeTicketsInDb = tickets;
-            }
+            } */
         }
 
 
