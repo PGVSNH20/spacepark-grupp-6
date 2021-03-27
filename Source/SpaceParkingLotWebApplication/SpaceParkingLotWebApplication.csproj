@@ -24,4 +24,8 @@
     <ProjectReference Include="..\EFDataAccessLibrary\EFDataAccessLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\backgrounds\" />
+  </ItemGroup>
+
 </Project>
