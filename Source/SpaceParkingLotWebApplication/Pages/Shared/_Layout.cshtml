@@ -35,16 +35,17 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-            <audio class="text-center" id="bgAudio" controls autoplay loop>
-                <source src="http://www.thesoundarchive.com/starwars/star-wars-theme-song.mp3" />
-                Your browser does not support the audio element. 
-            </audio>
+
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - SpaceParkingLotWebApplication - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <audio id="bgAudio" controls autoplay loop>
+                <source src="http://www.thesoundarchive.com/starwars/star-wars-theme-song.mp3" />
+                Your browser does not support the audio element.
+            </audio>
         </div>
     </footer>
 
