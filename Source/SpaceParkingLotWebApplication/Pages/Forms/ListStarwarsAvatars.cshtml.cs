@@ -14,7 +14,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public StarwarsAvatar Avatars { get; set; }
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(UserManual)) { UserManual = "Please navigate to to the front of this application validate your name!"; }
+            if (string.IsNullOrWhiteSpace(UserManual)) { UserManual = "Please navigate to to the front of this application to validate your name!"; }
         }
     }
 }
