@@ -9,6 +9,21 @@
     <p>group 6</p>
 </div>
 
+@{
+    <form>
+        <select id="tickets">
+
+            <option value="">List of active tickets</option>
+
+            @foreach (var record in Model.activeTicketsInDb)
+            {
+                <option value="@Html.DisplayFor(modelItem3 => record.Id)">
+                    @Html.DisplayFor(modelItem3 => record.Name)
+                </option>
+            }
+        </select>
+    </form>
+}
 
 @{
     <form>

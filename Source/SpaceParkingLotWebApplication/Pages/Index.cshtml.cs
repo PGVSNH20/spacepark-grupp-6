@@ -9,6 +9,7 @@ using SpaceParkingLotWebApplication.Models;
 using RestSharp;
 using EFDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using EFDataAccessLibrary.Models;
 
 namespace SpaceParkingLotWebApplication.Pages
 {
@@ -32,7 +33,7 @@ namespace SpaceParkingLotWebApplication.Pages
         }
         // Laddar ned en fusk-lista med karaktärer
         public List<StarwarsAvatar> starWarsUniverseAvatars = FetchStarWarsAvatarsAsync().GetAwaiter().GetResult();
-
+        
         static async Task<List<StarwarsAvatar>> FetchStarWarsAvatarsAsync()
         {
             List<StarwarsAvatar> avatars = new List<StarwarsAvatar>();
@@ -71,6 +72,7 @@ namespace SpaceParkingLotWebApplication.Pages
         public string NameOFParker { get; set; }
 
         // OnClick()
+        public List<TicketRecord> activeTicketsInDb;
         public void OnGet()
         {
            var tickets = _db.Tickets
@@ -80,6 +82,7 @@ namespace SpaceParkingLotWebApplication.Pages
                // .Include(d => d.ParkingSpot)
                // .Include(e => e.EndTime)
                              .ToList();
+
             foreach(var ticket in tickets)
             {
                 Console.WriteLine(@"ID{ ticket.Id} Name:
@@ -87,6 +90,7 @@ namespace SpaceParkingLotWebApplication.Pages
                 { ticket.ParkingSpot} Vehicle:
                 { ticket.VehicleID} Endtime:
                 { ticket.EndTime}");
+                activeTicketsInDb = tickets;
             }
         }
 
