@@ -109,6 +109,20 @@ namespace SpaceParkingLotWebApplication.Pages
             // Om namnet inte finns med i listan så går den tillbaka till index.cshtml
             return RedirectToPage("/index");
         }
-        
+
+        public List<TicketRecord> GetActiveTickets(List<TicketRecord> input)
+        {
+            List<TicketRecord> sortedList = new List<TicketRecord>();
+            foreach(var ticket in input)
+            {
+                if (ticket.EndTime < DateTime.Now)
+                {
+                    sortedList.Add(ticket);
+                }
+            }
+            
+            return sortedList;
+        }
+
     }
 }
