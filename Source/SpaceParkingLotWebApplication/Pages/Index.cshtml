@@ -65,20 +65,48 @@
     <form class="text-center">
         <select id="tickets">
 
+            <option value="">List of all old tickets</option>
+
+            @foreach (var record in Model.AllTicketsInDb)
+            {
+                if (record.EndTime < DateTime.Now)
+                {
+                    <option value="@Html.DisplayFor(modelItem3 => record.Name)">
+                        <p>Id:</p>
+                        @Html.DisplayFor(modelItem3 => record.Id)
+                        @Html.DisplayFor(modelItem3 => record.Name)
+                        @Html.DisplayFor(modelItem3 => record.VehicleID)
+                        <p>Spot:</p>
+                        @Html.DisplayFor(modelItem3 => record.ParkingSpot)
+                        <p>Ends:</p>
+                        @Html.DisplayFor(modelItem3 => record.EndTime)
+                    </option>
+                }
+            }
+        </select>
+    </form>
+}
+@{
+    <form class="text-center">
+        <select id="tickets">
+
             <option value="">List of all active tickets</option>
 
-            @foreach (var record in Model.activeTickets)
+            @foreach (var record in Model.AllTicketsInDb)
             {
-                <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                    <p>Id:</p>
-                    @Html.DisplayFor(modelItem3 => record.Id)
-                    @Html.DisplayFor(modelItem3 => record.Name)
-                    @Html.DisplayFor(modelItem3 => record.VehicleID)
-                    <p>Spot:</p>
-                    @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                    <p>Ends:</p>
-                    @Html.DisplayFor(modelItem3 => record.EndTime)
-                </option>
+                if (record.EndTime > DateTime.Now)
+                {
+                    <option value="@Html.DisplayFor(modelItem3 => record.Name)">
+                        <p>Id:</p>
+                        @Html.DisplayFor(modelItem3 => record.Id)
+                        @Html.DisplayFor(modelItem3 => record.Name)
+                        @Html.DisplayFor(modelItem3 => record.VehicleID)
+                        <p>Spot:</p>
+                        @Html.DisplayFor(modelItem3 => record.ParkingSpot)
+                        <p>Ends:</p>
+                        @Html.DisplayFor(modelItem3 => record.EndTime)
+                    </option>
+                }
             }
         </select>
     </form>
