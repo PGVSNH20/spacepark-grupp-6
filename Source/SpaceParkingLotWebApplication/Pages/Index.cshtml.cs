@@ -72,15 +72,13 @@ namespace SpaceParkingLotWebApplication.Pages
         public string NameOFParker { get; set; }
 
         // OnClick()
-        public List<TicketRecord> activeTicketsInDb;
+        public List<TicketRecord> AllTicketsInDb;
 
-        List<TicketRecord> activeTickets { get; set; }  = new List<TicketRecord>();
-        List<TicketRecord> oldTickets { get; set; }  = new List<TicketRecord>();
         public void OnGet()
         {
            var tickets = _db.Tickets
                             .ToList();
-            activeTicketsInDb = tickets;
+            AllTicketsInDb = tickets;
             /*foreach(var ticket in tickets)
             {
                 Console.WriteLine(@"ID{ ticket.Id} Name:
@@ -112,21 +110,5 @@ namespace SpaceParkingLotWebApplication.Pages
             // Om namnet inte finns med i listan så går den tillbaka till index.cshtml
             return RedirectToPage("/index");
         }
-
-        public void GetActiveTickets(List<TicketRecord> input)
-        {
-            foreach(var ticket in input)
-            {
-                if (ticket.EndTime < DateTime.Now)
-                {
-                    activeTickets.Add(ticket);
-                }
-                else
-                {
-                    oldTickets.Add(ticket);
-                }
-            }
-        }
-
     }
 }
