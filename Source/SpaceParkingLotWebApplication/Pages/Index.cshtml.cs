@@ -73,6 +73,9 @@ namespace SpaceParkingLotWebApplication.Pages
 
         // OnClick()
         public List<TicketRecord> activeTicketsInDb;
+
+        List<TicketRecord> activeTickets { get; set; }  = new List<TicketRecord>();
+        List<TicketRecord> oldTickets { get; set; }  = new List<TicketRecord>();
         public void OnGet()
         {
            var tickets = _db.Tickets
@@ -110,18 +113,19 @@ namespace SpaceParkingLotWebApplication.Pages
             return RedirectToPage("/index");
         }
 
-        public List<TicketRecord> GetActiveTickets(List<TicketRecord> input)
+        public void GetActiveTickets(List<TicketRecord> input)
         {
-            List<TicketRecord> sortedList = new List<TicketRecord>();
             foreach(var ticket in input)
             {
                 if (ticket.EndTime < DateTime.Now)
                 {
-                    sortedList.Add(ticket);
+                    activeTickets.Add(ticket);
+                }
+                else
+                {
+                    oldTickets.Add(ticket);
                 }
             }
-            
-            return sortedList;
         }
 
     }
