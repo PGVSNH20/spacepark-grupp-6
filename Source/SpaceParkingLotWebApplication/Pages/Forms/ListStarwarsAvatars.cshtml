@@ -3,13 +3,36 @@
 @{
     ViewData["Title"] = "Looking for parking?";
 }
+<style>
+    body {
+        background-image: url('/backgrounds/star-wars-backgrounds-11.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 0;
+    }
 
+    label {
+        color: white;
+    }
+
+    div {
+        color: white;
+    }
+    .rules {
+         font-weight:bolder;
+         font-size:larger;
+    }
+    
+</style>
 <h1>@Model.UserManual</h1>
-<div></div>
-<a class="btn btn-primary" href="/Index" role="button">To new validation!</a>
-<h2>Parking rules</h2>
-<li>If you've never been in a Star Wars movie, you're not allowed here.</li>
-<li>Your vehicle must be one of listed on site.</li>
-<li>You will pay for this service.</li>
-<li>If the lot is full, do NOT park outside.</li>
-<li>Follow these rules or there will be blood.</li>
+<div>
+    <a class="btn btn-primary" href="/Index" role="button">To new validation!</a>
+    <h2>Parking rules</h2>
+    <div class="rules">
+        <li>If you've never been in a Star Wars movie, you're not allowed here.</li>
+        <li>Your vehicle must be one of listed on site.</li>
+        <li>You will pay for this service.</li>
+        <li>If the lot is full, do NOT park outside.</li>
+        <li>Follow these rules or there will be blood.</li>
+    </div>
+</div>
