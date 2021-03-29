@@ -7,6 +7,7 @@ using EFDataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using RestSharp;
 using SpaceParkingLotWebApplication.Models;
 
@@ -14,7 +15,14 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 {
     public class BeginParking : PageModel
     {
+        private readonly ILogger<IndexModel> _logger;
+        private readonly TicketContext _db;
 
+        public BeginParking(ILogger<IndexModel> logger, TicketContext db)
+        {
+            _logger = logger;
+            _db = db;
+        }
 
         // Lade till lite props som vi sätter i inputs / hämtar in från Index.cshtml
         [BindProperty(SupportsGet = true)]
@@ -80,10 +88,14 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             }
             return ships;
         }
+        public List<TicketRecord> AllTicketsInDb;
 
         public void OnGet()
         {
             UserGreeting = NameOFParker;
+            var tickets = _db.Tickets
+                            .ToList();
+            AllTicketsInDb = tickets;
         }
 
         // Laddar ned en fusk-lista med skepp

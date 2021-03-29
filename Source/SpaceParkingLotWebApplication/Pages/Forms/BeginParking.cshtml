@@ -28,6 +28,23 @@ else
     </select>
 </form>
 
+@{
+    @foreach (var ticket in Model.AllTicketsInDb)
+    {
+        if (ticket.Name == Model.NameOFParker)
+        {
+            if (ticket.EndTime > DateTime.Now)
+            {
+                @Html.DisplayText("Parkeringplats: ");
+                @Html.DisplayFor(x => ticket.ParkingSpot);
+
+                @Html.DisplayText("Sluttid: ");
+                @Html.DisplayFor(x => ticket.EndTime);
+            }
+        }
+    }
+}
+
 <form method="post">
     <input type="text" asp-for="Vehicle" placeholder="Vehicle Name" />
     <input type="time" asp-for="StartTime" asp-format="{0:HH:mm}" placeholder="Start parking" />
