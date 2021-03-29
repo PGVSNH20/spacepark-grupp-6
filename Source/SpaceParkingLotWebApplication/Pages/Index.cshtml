@@ -47,13 +47,13 @@
             @foreach (var record in Model.AllTicketsInDb)
             {
                 <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                    <p>Id:</p>
+                    Id:
                     @Html.DisplayFor(modelItem3 => record.Id)
                     @Html.DisplayFor(modelItem3 => record.Name)
                     @Html.DisplayFor(modelItem3 => record.VehicleID)
-                    <p>Spot:</p>
+                    Spot:
                     @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                    <p>Ends:</p>
+                    Ends:
                     @Html.DisplayFor(modelItem3 => record.EndTime)
                 </option>
             }
@@ -72,13 +72,13 @@
                 if (record.EndTime < DateTime.Now)
                 {
                     <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                        <p>Id:</p>
+                        Id:
                         @Html.DisplayFor(modelItem3 => record.Id)
                         @Html.DisplayFor(modelItem3 => record.Name)
                         @Html.DisplayFor(modelItem3 => record.VehicleID)
-                        <p>Spot:</p>
+                        Spot:
                         @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                        <p>Ends:</p>
+                        Ends:
                         @Html.DisplayFor(modelItem3 => record.EndTime)
                     </option>
                 }
@@ -97,13 +97,13 @@
                 if (record.EndTime > DateTime.Now)
                 {
                     <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                        <p>Id:</p>
+                        Id:
                         @Html.DisplayFor(modelItem3 => record.Id)
                         @Html.DisplayFor(modelItem3 => record.Name)
                         @Html.DisplayFor(modelItem3 => record.VehicleID)
-                        <p>Spot:</p>
+                        Spot:
                         @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                        <p>Ends:</p>
+                        Ends:
                         @Html.DisplayFor(modelItem3 => record.EndTime)
                     </option>
                 }
