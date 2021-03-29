@@ -35,13 +35,19 @@ else
         {
             if (ticket.EndTime > DateTime.Now)
             {
-
-                @Html.Raw("Du har en aktiv parkeringsbiljett ! Parkeringsplats: ");
+                @Html.Raw("<br>");
+                @Html.Raw("Du har en aktiv parkeringsbiljett !");
+                @Html.Raw("<br>");
+                @Html.Raw(" Parkeringsplats: ");
                 @Html.DisplayFor(x => ticket.ParkingSpot);
-
+                @Html.Raw("<br>");
                 @Html.Raw(" Sluttid: ");
                 @Html.DisplayFor(x => ticket.EndTime);
                 @Html.Raw("<br>");
+                @Html.Raw(" Skepp: ");
+                @Html.DisplayFor(x => ticket.VehicleID);
+                @Html.Raw("<br><br>");
+
             }
         }
     }
