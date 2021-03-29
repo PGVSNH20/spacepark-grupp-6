@@ -127,7 +127,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
 
             // Om skeppet inte finns med i listan så ska den ge en varning att fordonet ej är tillåtet
             WrongVehicle = $"{Parking.Name}, you need to choose a valid star ship to park in this parking lot!";
-            return Page();
+            return RedirectToPage("/forms/BeginParking", new { NameOFParker = NameOFParker });
         }
 
 
