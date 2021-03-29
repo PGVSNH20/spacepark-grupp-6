@@ -81,8 +81,6 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             return ships;
         }
 
-
-
         public void OnGet()
         {
             UserGreeting = NameOFParker;
@@ -114,15 +112,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 }
             }
 
-            // Om skeppet inte finns med i listan så ska den kanske ge en varning
-            // att man inte tar emot skeppet på parkeringen?
-            // MEN i dagsläget resettar den bara sidan BeginParking.cshtml
+            // Om skeppet inte finns med i listan så ska den ge en varning att fordonet ej är tillåtet
             WrongVehicle = $"{Parking.Name}, you need to choose a valid star ship to park in this parking lot!";
             return Page();
-
-
-            //Save Model to DataBase
-            //"Parking"-objectet lär väll vara det som ska in i databasen? -DR
         }
 
 
