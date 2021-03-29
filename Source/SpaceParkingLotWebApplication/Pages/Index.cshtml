@@ -8,7 +8,9 @@
     <h1 class="display-4">Welcome Galactic Explorer</h1>
     <p>group 6</p>
 </div>
-
+<div class="text-center">
+    <p>There are currently @Model.AllTicketsInDb.Where(x => x.EndTime > DateTime.Now).Count() out of 20 parking slots taken at this time</p>
+</div>
 @{
     <form class="text-center">
         <select id="name">
