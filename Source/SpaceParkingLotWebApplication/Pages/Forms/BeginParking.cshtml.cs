@@ -94,7 +94,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
         public double TicketCost { get; set; }
         public double OccupationTime { get; set; }
-
+        public string WrongVehicle { get; set; }
         public IActionResult OnPost()
         {
 
@@ -117,6 +117,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             // Om skeppet inte finns med i listan så ska den kanske ge en varning
             // att man inte tar emot skeppet på parkeringen?
             // MEN i dagsläget resettar den bara sidan BeginParking.cshtml
+            WrongVehicle = $"{Parking.Name}, you need to choose a valid star ship to park in this parking lot!";
             return Page();
 
 

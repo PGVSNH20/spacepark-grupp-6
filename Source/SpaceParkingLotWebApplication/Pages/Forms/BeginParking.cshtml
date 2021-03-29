@@ -6,7 +6,15 @@
     ViewData["Title"] = "Begin Parking";
 }
 
-<h1> Hello @Model.UserGreeting. What's your vehicle how long are you staying?</h1>
+@if (Model.WrongVehicle != null)
+{
+    <h1>@Model.WrongVehicle</h1>
+}
+else
+{
+    <h1> Hello @Model.UserGreeting. What's your vehicle how long are you staying?</h1>
+
+}
 
 <form method="post">
     <select name="shipSelect">
@@ -26,4 +34,6 @@
     <input type="time" asp-for="EndTime" asp-format="{0:HH:mm}" placeholder="Stop parking" />
     <button type="submit" class="btn btn-primary">Begin parking!</button>
 </form>
+
+
 
