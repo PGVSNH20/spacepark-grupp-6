@@ -5,7 +5,7 @@
 }
 <style>
     body {
-        background-image: url('/backgrounds/star-wars-backgrounds-11.jpg');
+        background-image: url('/backgrounds/star-wars-backgrounds-09.jpg');
         background-repeat: no-repeat;
         background-position: center;
         margin: 0;
@@ -17,17 +17,27 @@
 
     div {
         color: white;
+        
+    }
+    .ruleBox {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0 auto;
+        bottom: 20px;
+        text-align:center;
     }
     .rules {
-         font-weight:bolder;
-         font-size:larger;
+        font-weight: bolder;
+        font-size: larger;
+        
     }
     
 </style>
 <h1>@Model.UserManual</h1>
-<div>
-    <a class="btn btn-primary" href="/Index" role="button">To new validation!</a>
-    <h2>Parking rules</h2>
+<a class="btn btn-info" href="/Index" role="button">To new validation!</a>
+<div class="ruleBox">
+     <h2>Parking rules</h2>
     <div class="rules">
         <li>If you've never been in a Star Wars movie, you're not allowed here.</li>
         <li>Your vehicle must be one of listed on site.</li>
