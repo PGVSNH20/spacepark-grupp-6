@@ -28,7 +28,14 @@
 @{
     <form method="post">
         <div class="text-center">
-            <label>Hello sir! What is your name may I ask ?</label>
+            @if (Model.InvalidName != null)
+            {
+                <label>@Model.InvalidName</label>
+            }
+            else
+            {
+                <label>Hello sir! What is your name may I ask ?</label>
+            }
             <br />
 
             <input type="text" asp-for="NameOFParker" placeholder="Enter Your Name" />

@@ -71,6 +71,9 @@ namespace SpaceParkingLotWebApplication.Pages
         [BindProperty]
         public string NameOFParker { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string InvalidName { get; set; }
+
         // OnClick()
         public List<TicketRecord> AllTicketsInDb;
 
@@ -108,7 +111,7 @@ namespace SpaceParkingLotWebApplication.Pages
             }
 
             // Om namnet inte finns med i listan så går den tillbaka till index.cshtml
-            return RedirectToPage("/index");
+            return RedirectToPage("/index", new { InvalidName = $"Hey Stranger, identify yourself!" });
         }
     }
 }
