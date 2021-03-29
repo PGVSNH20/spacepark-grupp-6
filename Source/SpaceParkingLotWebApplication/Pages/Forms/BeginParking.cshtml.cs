@@ -103,6 +103,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
         public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
         public double TicketCost { get; set; }
+        public double Rate { get; } = 5;
         public double OccupationTime { get; set; }
         public string WrongVehicle { get; set; }
         public IActionResult OnPost()
@@ -118,7 +119,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 if (ship.name.Equals(Parking.VehicleID))
                 {
                     OccupationTime = GetMinutes(Parking.StartTime, Parking.Endtime);
-                    TicketCost = GetTicketCost(OccupationTime, 5);
+                    TicketCost = GetTicketCost(OccupationTime, Rate);
                     if (OccupationTime >= 1) { CreateOrder(); } else { return RedirectToPage("/Index"); }                   
                     return RedirectToPage("/forms/ListStarwarsAvatars", new { UserManual = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {OccupationTime} minutes \nTotal cost: {TicketCost} SEK") });
                 }
