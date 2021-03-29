@@ -35,12 +35,13 @@ else
         {
             if (ticket.EndTime > DateTime.Now)
             {
-                
+
                 @Html.Raw("Du har en aktiv parkeringsbiljett ! Parkeringsplats: ");
                 @Html.DisplayFor(x => ticket.ParkingSpot);
 
                 @Html.Raw(" Sluttid: ");
                 @Html.DisplayFor(x => ticket.EndTime);
+                @Html.Raw("<br>");
             }
         }
     }
