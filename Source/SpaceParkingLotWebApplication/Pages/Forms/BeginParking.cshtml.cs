@@ -93,7 +93,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
         public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
         public double TicketCost { get; set; }
-        public double occupationTime { get; set; }
+        public double OccupationTime { get; set; }
 
         public IActionResult OnPost()
         {
@@ -107,10 +107,10 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
             {
                 if (ship.name.Equals(Parking.VehicleID))
                 {
-                    occupationTime = GetMinutes(Parking.StartTime, Parking.Endtime);
-                    TicketCost = GetTicketCost(occupationTime, 5);
+                    OccupationTime = GetMinutes(Parking.StartTime, Parking.Endtime);
+                    TicketCost = GetTicketCost(OccupationTime, 5);
                     CreateOrder();
-                    return RedirectToPage("/forms/ListStarwarsAvatars", new { UserManual = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {occupationTime} minutes \nTotal cost: {TicketCost} SEK") });
+                    return RedirectToPage("/forms/ListStarwarsAvatars", new { UserManual = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {OccupationTime} minutes \nTotal cost: {TicketCost} SEK") });
                 }
             }
 
@@ -137,7 +137,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                     VehicleID = Parking.VehicleID,
                     StartTime = Parking.StartTime,
                     EndTime = Parking.Endtime,
-                    OccupationTimeInMinutes = occupationTime,
+                    OccupationTimeInMinutes = OccupationTime,
                     AmountToPay = TicketCost,
                     ParkingSpot = new Random().Next(1, 30),
                 };
