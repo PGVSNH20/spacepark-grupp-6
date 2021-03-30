@@ -101,7 +101,7 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         // Laddar ned en fusk-lista med skepp
         public List<StarShips> starWarsUniverseShips = FetchStarWarsShipsAsync().GetAwaiter().GetResult();
         public double GetMinutes(DateTime start, DateTime end) { double result = (end - start).TotalMinutes; return result; }
-        public double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
+        public static double GetTicketCost(double minutes, double rate) { double result = minutes * rate; return result; }
         public double TicketCost { get; set; }
         public double Rate { get; } = 5;
         public double OccupationTime { get; set; }

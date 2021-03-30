@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using SpaceParkingLotWebApplication;
 using SpaceParkingLotWebApplication.Models;
+using SpaceParkingLotWebApplication.Pages.Forms;
 using System;
 using System.Threading.Tasks;
 
@@ -41,6 +42,17 @@ namespace SpaceParkTestUnit
             var peopleResponse = await client.GetAsync<StarWarsUniverseAvatar>(request);
 
             Assert.AreEqual("Luke Skywalker", peopleResponse.results[0].name);
+        }
+
+        [TestMethod]
+        public void WhenCalTicketCost()
+        {
+            var rate = 10;
+            var time = 10;
+
+            var testpark = BeginParking.GetTicketCost(time, rate);
+
+            Assert.AreEqual(100, testpark);
         }
     }
 }
