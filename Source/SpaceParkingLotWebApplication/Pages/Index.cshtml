@@ -79,7 +79,9 @@
                     <option value="@Html.DisplayFor(modelItem3 => record.Name)">
                         Id:
                         @Html.DisplayFor(modelItem3 => record.Id)
+                        Name:
                         @Html.DisplayFor(modelItem3 => record.Name)
+                        Ship:
                         @Html.DisplayFor(modelItem3 => record.VehicleID)
                         Spot:
                         @Html.DisplayFor(modelItem3 => record.ParkingSpot)
@@ -101,16 +103,18 @@
                 {
                     if (record.EndTime < DateTime.Now)
                     {
-                        <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                            Id:
-                            @Html.DisplayFor(modelItem3 => record.Id)
-                            @Html.DisplayFor(modelItem3 => record.Name)
-                            @Html.DisplayFor(modelItem3 => record.VehicleID)
-                            Spot:
-                            @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                            Ends:
-                            @Html.DisplayFor(modelItem3 => record.EndTime)
-                        </option>
+                    <option value="@Html.DisplayFor(modelItem3 => record.Name)">
+                        Id:
+                        @Html.DisplayFor(modelItem3 => record.Id)
+                        Name:
+                        @Html.DisplayFor(modelItem3 => record.Name)
+                        Ship:
+                        @Html.DisplayFor(modelItem3 => record.VehicleID)
+                        Spot:
+                        @Html.DisplayFor(modelItem3 => record.ParkingSpot)
+                        Ends:
+                        @Html.DisplayFor(modelItem3 => record.EndTime)
+                    </option>
                     }
                 }
             </select>
@@ -126,16 +130,18 @@
                 {
                     if (record.EndTime > DateTime.Now)
                     {
-                        <option value="@Html.DisplayFor(modelItem3 => record.Name)">
-                            Id:
-                            @Html.DisplayFor(modelItem3 => record.Id)
-                            @Html.DisplayFor(modelItem3 => record.Name)
-                            @Html.DisplayFor(modelItem3 => record.VehicleID)
-                            Spot:
-                            @Html.DisplayFor(modelItem3 => record.ParkingSpot)
-                            Ends:
-                            @Html.DisplayFor(modelItem3 => record.EndTime)
-                        </option>
+                    <option value="@Html.DisplayFor(modelItem3 => record.Name)">
+                        Id:
+                        @Html.DisplayFor(modelItem3 => record.Id)
+                        Name:
+                        @Html.DisplayFor(modelItem3 => record.Name)
+                        Ship:
+                        @Html.DisplayFor(modelItem3 => record.VehicleID)
+                        Spot:
+                        @Html.DisplayFor(modelItem3 => record.ParkingSpot)
+                        Ends:
+                        @Html.DisplayFor(modelItem3 => record.EndTime)
+                    </option>
                     }
                 }
             </select>
