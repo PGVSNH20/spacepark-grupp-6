@@ -105,7 +105,9 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
         public double TicketCost { get; set; }
         public double Rate { get; } = 5;
         public double OccupationTime { get; set; }
-        public string WrongVehicle { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string InvalidValue { get; set; }
         public IActionResult OnPost()
         {
 
@@ -120,14 +122,26 @@ namespace SpaceParkingLotWebApplication.Pages.Forms
                 {
                     OccupationTime = GetMinutes(Parking.StartTime, Parking.Endtime);
                     TicketCost = GetTicketCost(OccupationTime, Rate);
-                    if (OccupationTime >= 1) { CreateOrder(); } else { return RedirectToPage("/Index"); }                   
-                    return RedirectToPage("/forms/ListStarwarsAvatars", new { UserManual = ($"{Parking.Name}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {OccupationTime} minutes \nTotal cost: {TicketCost} SEK") });
+
+                    if (TicketCost < 0)
+                    {
+                        return RedirectToPage("/forms/BeginParking", new { InvalidValue = $"Hey, you need to enter a valid time", NameOFParker = NameOFParker }); ;
+                    }
+
+                    if (OccupationTime >= 1)
+                    {
+                        CreateOrder();
+                    }
+
+                    return RedirectToPage("/forms/ListStarwarsAvatars", new { UserManual = ($"{NameOFParker}, your {Parking.VehicleID} is parked and expires: {Parking.Endtime}!\n Total occupationtime: {OccupationTime} minutes \nTotal cost: {TicketCost} SEK") });
                 }
             }
 
+
+
             // Om skeppet inte finns med i listan så ska den ge en varning att fordonet ej är tillåtet
-            WrongVehicle = $"{Parking.Name}, you need to choose a valid star ship to park in this parking lot!";
-            return RedirectToPage("/forms/BeginParking", new { NameOFParker = NameOFParker });
+            return RedirectToPage("/forms/BeginParking", new { InvalidValue = $"Hey, you need to choose a valid star ship to park in this parking lot!", NameOFParker = NameOFParker });
+
         }
 
 

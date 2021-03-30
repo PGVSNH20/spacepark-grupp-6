@@ -6,15 +6,17 @@
     ViewData["Title"] = "Begin Parking";
 }
 
-@if (Model.WrongVehicle != null)
+
+@if (Model.InvalidValue != null)
 {
-    <h1>@Model.WrongVehicle</h1>
+    <h1>@Model.InvalidValue</h1>
 }
 else
 {
     <h1> Hello @Model.UserGreeting. What's your vehicle how long are you staying?</h1>
 
 }
+
 <style>
     body {
         background-image: url('/backgrounds/star-wars-backgrounds-11.jpg');
@@ -49,29 +51,29 @@ else
     </select>
 </form>
 
-@{
-    @foreach (var ticket in Model.AllTicketsInDb)
+
+@foreach (var ticket in Model.AllTicketsInDb)
+{
+    if (ticket.Name == Model.NameOFParker)
     {
-        if (ticket.Name == Model.NameOFParker)
+        if (ticket.EndTime > DateTime.Now)
         {
-            if (ticket.EndTime > DateTime.Now)
-            {
-                @Html.Raw("<br>");
-                @Html.Raw("Du har en aktiv parkeringsbiljett !");
-                @Html.Raw("<br>");
-                @Html.Raw(" Parkeringsplats: ");
-                @Html.DisplayFor(x => ticket.ParkingSpot);
-                @Html.Raw("<br>");
-                @Html.Raw(" Sluttid: ");
-                @Html.DisplayFor(x => ticket.EndTime);
-                @Html.Raw("<br>");
-                @Html.Raw(" Skepp: ");
-                @Html.DisplayFor(x => ticket.VehicleID);
-                @Html.Raw("<br><br>");
-            }
+            @Html.Raw("<br>");
+            @Html.Raw("Du har en aktiv parkeringsbiljett !");
+            @Html.Raw("<br>");
+            @Html.Raw(" Parkeringsplats: ");
+            @Html.DisplayFor(x => ticket.ParkingSpot);
+            @Html.Raw("<br>");
+            @Html.Raw(" Sluttid: ");
+            @Html.DisplayFor(x => ticket.EndTime);
+            @Html.Raw("<br>");
+            @Html.Raw(" Skepp: ");
+            @Html.DisplayFor(x => ticket.VehicleID);
+            @Html.Raw("<br><br>");
         }
     }
 }
+
 
 <form method="post">
     <input type="text" asp-for="Vehicle" placeholder="Vehicle Name" />
